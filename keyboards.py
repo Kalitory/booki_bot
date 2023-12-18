@@ -21,12 +21,12 @@ def choice_genre_keyboard():
         KeyboardButton(text=genre) for genre in genres.keys()
     ]
     kb_builder = ReplyKeyboardBuilder()
-    kb_builder.row(*buttons, width=4)
+    kb_builder.row(*buttons, width=3)
 
     return kb_builder
 
 
-def choice_genre_mood(gener: str): #ожидаемый тип
+def choice_genre_mood(gener: str): # ожидаемый тип
     buttons: list[KeyboardButton] = [
         KeyboardButton(text=genre) for genre in genres[gener]
     ]

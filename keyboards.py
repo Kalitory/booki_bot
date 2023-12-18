@@ -26,7 +26,7 @@ def choice_genre_keyboard():
     return kb_builder
 
 
-def choice_genre_mood(gener: str): # ожидаемый тип
+def choice_genre_mood(gener: str):
     buttons: list[KeyboardButton] = [
         KeyboardButton(text=genre) for genre in genres[gener]
     ]

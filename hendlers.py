@@ -18,14 +18,14 @@ async def process_start_command(message: Message):
     await main_navigation(message)
 
 
-@router.message(F.text == 'Назад')
+@router.message(F.text == LEXICON['back'])
 async def main_navigation(message: Message):
     await message.answer(
         text=LEXICON['main_choice'], reply_markup=main_navigation_keyboard()
     )
 
 
-@router.message(F.text == 'Подобрать книгу')
+@router.message(F.text == LEXICON['find_book'])
 async def process_choice_genre(message: Message):
     await message.answer(
         text=LEXICON['genres'],
@@ -45,11 +45,11 @@ async def process_choice_mood(message: Message):
 async def process_choice_mood(message: Message):
     await message.answer(
         text=LEXICON['lets_read'],
-        reply_markup=ReplyKeyboardRemove()
+        reply_markup=ReplyKeyboardRemove() #тк дальше будет инлайн
     )
     await message.answer(
         text=LEXICON['choice_book'],
-        reply_markup=choice_book(message.text).as_markup()
+        reply_markup=choice_book(message.text).as_markup() #когда используем билдер
     )
 
 
@@ -60,12 +60,13 @@ async def process_read_description(callback: CallbackQuery):
     )
 
 
-@router.message(F.text == 'Случайная книга')
+@router.message(F.text == LEXICON['get_random'])
 async def process_choice_genre(message: Message):
     await message.answer(
         text=f"{LEXICON['random_book']}"
              f"\n{show_description(randint(1, 103))}",
         reply_markup=return_to_main())
+
 
 @router.message()
 async def other_messages(message: Message):

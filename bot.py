@@ -1,11 +1,13 @@
 from aiogram import Bot, Dispatcher
+from environs import Env
 
-from config import Config, load_config
 from hendlers import router
 
+
 # Создаем глобальный объект бота
-config: Config = load_config()
-bot = Bot(token=config.tg_bot.token, parse_mode='HTML')
+env = Env()
+env.read_env()
+bot = Bot(token=env('BOT_TOKEN'), parse_mode='HTML')
 dp = Dispatcher()
 
 # Регистриуем роутеры в диспетчере

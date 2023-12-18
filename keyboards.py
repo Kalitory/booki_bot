@@ -2,13 +2,14 @@ from aiogram.types import ReplyKeyboardMarkup, KeyboardButton, InlineKeyboardBut
 from aiogram.utils.keyboard import ReplyKeyboardBuilder, InlineKeyboardBuilder
 
 from database import genres, sub_genres
+from lexicon import LEXICON
 
 
 def main_navigation_keyboard():
     keyboard = ReplyKeyboardMarkup(
         keyboard=[[
-            KeyboardButton(text='Подобрать книгу'),
-            KeyboardButton(text='Случайная книга')
+            KeyboardButton(text=LEXICON['find_book']),
+            KeyboardButton(text=LEXICON['get_random'])
         ]], resize_keyboard=True
     )
 
@@ -25,7 +26,7 @@ def choice_genre_keyboard():
     return kb_builder
 
 
-def choice_genre_mood(gener: str):
+def choice_genre_mood(gener: str): #ожидаемый тип
     buttons: list[KeyboardButton] = [
         KeyboardButton(text=genre) for genre in genres[gener]
     ]
@@ -51,7 +52,7 @@ def choice_book(sub_gener: str):
 def return_to_main():
     keyboard = ReplyKeyboardMarkup(
         keyboard=[[
-            KeyboardButton(text='Назад'),
+            KeyboardButton(text=LEXICON['back']),
         ]], resize_keyboard=True
     )
 
